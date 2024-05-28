@@ -1,4 +1,4 @@
-import { Button, Group, Modal, Stack } from '@mantine/core';
+import { Button, Group, Modal, Stack, createStyles } from '@mantine/core';
 import React from 'react';
 import { useNuiEvent } from '../../hooks/useNuiEvent';
 import { useLocales } from '../../providers/LocaleProvider';
@@ -23,7 +23,14 @@ export type FormValues = {
   }[];
 };
 
+const useStyles = createStyles((theme) => ({
+  modal: {
+    backgroundImage: `linear-gradient(to right, rgba(255, 255, 255, 0) 50%, rgba(0, 0, 0, 0.4) 100%)`,
+  }
+}));
+
 const InputDialog: React.FC = () => {
+  const { classes } = useStyles();
   const [fields, setFields] = React.useState<InputProps>({
     heading: '',
     rows: [{ type: 'input', label: '' }],
@@ -100,14 +107,37 @@ const InputDialog: React.FC = () => {
       <Modal
         opened={visible}
         onClose={handleClose}
-        centered
         closeOnEscape={fields.options?.allowCancel !== false}
         closeOnClickOutside={false}
         size="xs"
-        styles={{ title: { textAlign: 'center', width: '100%', fontSize: 18 } }}
         title={fields.heading}
         withCloseButton={false}
-        overlayOpacity={0.5}
+        overlayOpacity={0.6}
+        styles={{
+          overlay: {
+            width: '100%',
+            background: 'linear-gradient(to right, rgba(133,133,133,0) 10%, rgba(133, 133, 133, 0) 30%, rgb(43, 44, 54) 100%)',
+            height: '100vh',
+          },
+          title: { 
+            textAlign: 'center', 
+            width: '100%', 
+            fontSize: 18,
+            borderWidth: '3px',
+            borderStyle: 'solid',
+            borderImage: 
+              'linear-gradient(to left, rgba(0, 0, 0, 0) 10%, rgba(0, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0) 90%) 0 0 100%'
+          },
+          modal: {
+            position: 'absolute',
+            top: '10%',
+            right: '5%',
+            background: 'transparent',
+            border: `none`,
+            color: '#e6e6e6'
+          }
+        }}
+        className='teste1'
         transition="fade"
         exitTransitionDuration={150}
       >
@@ -157,11 +187,25 @@ const InputDialog: React.FC = () => {
                 variant="default"
                 onClick={() => handleClose()}
                 mr={3}
+                styles={{
+                  root: {
+                    border: '1px solid #ADB5BD',
+                    background: 'transparent',
+                    color: '#e6e6e6',
+                  }
+                }}
                 disabled={fields.options?.allowCancel === false}
               >
                 {locale.ui.cancel}
               </Button>
-              <Button uppercase variant="light" type="submit">
+              <Button uppercase styles={{
+                root: {
+                  boxShadow: 'inset 0px 0px 62px rgba(0, 255, 255, 0.8)',
+                  border: '1px solid #ADB5BD',
+                  background: 'rgba(0, 255, 255, radial-gradient(31.98% 56.85% at 50% 50%, rgba(12, 13, 18, 0.66) 0%, rgba(14, 15, 19, 0.66) 100%)',
+                  color: '#e6e6e6',
+                }
+              }} type="submit">
                 {locale.ui.confirm}
               </Button>
             </Group>

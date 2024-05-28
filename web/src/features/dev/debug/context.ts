@@ -7,6 +7,8 @@ export const debugContext = () => {
       action: 'showContext',
       data: {
         title: 'Vehicle garage',
+        background: true,
+        backgroundColor: '#000',
         options: [
           { title: 'Empty button' },
           {

@@ -35,6 +35,20 @@ const DateField: React.FC<Props> = (props) => {
           withAsterisk={props.row.required}
           clearable={props.row.clearable}
           icon={props.row.icon && <LibIcon fixedWidth icon={props.row.icon} />}
+          styles={{
+            label: {
+              color: '#e6e6e6',
+              textShadow: '0px 0px 2px rgba(0,0,0,0.2)',
+            },
+            description: { 
+              color: 'rgba(192, 192, 192, 1)',
+            },
+            input: {
+              background: 'radial-gradient(circle, rgba(255,255,255,0.05) 20%, rgba(77,79,87,0.15) 100%)',
+              border: `2px solid rgba(152, 156, 161, 0.5)`,
+              color: '#e6e6e6',
+            },
+          }}
           minDate={props.row.min ? new Date(props.row.min) : undefined}
           maxDate={props.row.max ? new Date(props.row.max) : undefined}
         />

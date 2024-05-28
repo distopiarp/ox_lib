@@ -21,27 +21,37 @@ const useStyles = createStyles((theme, params: { disabled?: boolean; readOnly?: 
   },
   label: {
     width: '100%',
-    color: params.disabled ? theme.colors.dark[3] : theme.colors.dark[0],
+    color: params.disabled ? '#fff' : '#fff',
     whiteSpace: 'pre-wrap',
+    fontWeight: 500
   },
   button: {
     height: 'fit-content',
     width: '100%',
+    background: 'radial-gradient(circle, rgba(255,255,255,0.15) 20%, rgba(77,79,87,0.25) 100%)',
+    border: `2px solid rgba(152, 156, 161, 0.5)`,
+    borderRadius: '3px',
     padding: 10,
     '&:hover': {
-      backgroundColor: params.readOnly ? theme.colors.dark[6] : undefined,
+      background: params.readOnly ? 'radial-gradient(circle, rgba(105,46,47,0.089) 0%, rgba(105,46,47,0.177) 100%)' : 'linear-gradient(90deg, rgba(193,194,197,0.2) 0%, rgba(166,167,171,0.4) 100%)',
+      border: `2px solid rgba(0, 255, 255, 0.5)`,
       cursor: params.readOnly ? 'unset' : 'pointer',
     },
     '&:active': {
       transform: params.readOnly ? 'unset' : undefined,
+    },
+    '&:disabled': {
+      background: 'radial-gradient(circle, rgba(255,10,0,0.3) 0%, rgba(255,10,0,0.1) 100%)',
+      border: `2px solid rgba(255, 10, 10, 0.5)`,
     },
   },
   iconImage: {
     maxWidth: '25px',
   },
   description: {
-    color: params.disabled ? theme.colors.dark[3] : theme.colors.dark[2],
+    color: 'rgba(192, 192, 192, 1)',
     fontSize: 12,
+    fontWeight: 400
   },
   dropdown: {
     padding: 10,
@@ -60,6 +70,8 @@ const useStyles = createStyles((theme, params: { disabled?: boolean; readOnly?: 
     flexWrap: 'nowrap',
   },
   buttonIconContainer: {
+    color: '#00e1ff',
+    filter: 'drop-shadow(0px 0px 3px rgba(0, 225, 255, 0.5))',
     width: 25,
     height: 25,
     justifyContent: 'center',
@@ -133,7 +145,7 @@ const ContextButton: React.FC<{
                   </Text>
                 )}
                 {button.progress !== undefined && (
-                  <Progress value={button.progress} size="sm" color={button.colorScheme || 'dark.3'} />
+                  <Progress value={button.progress} size="xs" color={button.colorScheme || 'dark.3'} />
                 )}
               </Stack>
               {(button.menu || button.arrow) && button.arrow !== false && (
@@ -160,7 +172,7 @@ const ContextButton: React.FC<{
                   {typeof metadata === 'object' && metadata.progress !== undefined && (
                     <Progress
                       value={metadata.progress}
-                      size="sm"
+                      size="xs"
                       color={metadata.colorScheme || button.colorScheme || 'dark.3'}
                     />
                   )}

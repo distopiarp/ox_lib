@@ -17,6 +17,7 @@ const useStyles = createStyles((theme, params: { canClose?: boolean }) => ({
     height: 'auto',
     textAlign: 'center',
     justifyContent: 'center',
+    background: 'none',
     padding: 2,
   },
   root: {

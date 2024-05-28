@@ -12,27 +12,49 @@ const useStyles = createStyles((theme) => ({
   container: {
     width: 300,
     height: 'fit-content',
-    backgroundColor: theme.colors.dark[6],
-    color: theme.colors.dark[0],
+    background: 'radial-gradient(31.98% 56.85% at 50% 50%, rgba(12, 13, 18, 0.96) 0%, rgba(14, 15, 19, 0.96) 100%)',
+    color: '#e6e6e6',
     padding: 12,
-    borderRadius: theme.radius.sm,
-    fontFamily: 'Roboto',
-    boxShadow: theme.shadows.sm,
+    borderRadius: '7px',
+    fontFamily: 'Poppins',
+    boxShadow: 'inset 0px 0px 62px rgba(44, 44, 44, 0.3)',
+    border: '1px solid rgba(144, 144, 144, 0.1)',
+
+    '&.success': {
+      boxShadow: 'inset 0px 0px 62px rgba(0, 248, 108, 0.3)',
+    },
+    '&.info': {
+      boxShadow: 'inset 0px 0px 62px rgba(75, 156, 88, 0.3)',
+    },
+    '&.error': {
+      boxShadow: 'inset 0px 0px 62px rgba(246, 27, 27, 0.3)',
+      border: '1px solid rgba(44, 44, 44, 0.1)',
+    },
+  },
+  themeIcon: {
+    boxShadow: 'inset 0px 0px 12px rgba(0, 0, 0, 0.3)',
   },
   title: {
+    fontSize: 12,
     fontWeight: 500,
+    color: '#e6e6e6',
+    textShadow: '2px 2px 2px rgba(0,0,0,0.3)',
     lineHeight: 'normal',
   },
+  icon: {
+    boxShadow: '0 0 20px rgba(255, 255, 255, 0.5)', // Add glow effect
+    borderRadius: '60%', // Ensure the glow is rounded
+  },
   description: {
-    fontSize: 12,
-    color: theme.colors.dark[2],
-    fontFamily: 'Roboto',
+    fontSize: 10,
+    color: '#eee',
+    fontFamily: 'Poppins',
     lineHeight: 'normal',
   },
   descriptionOnly: {
     fontSize: 14,
-    color: theme.colors.dark[2],
-    fontFamily: 'Roboto',
+    color: '#eee',
+    fontFamily: 'Poppins',
     lineHeight: 'normal',
   },
 }));
@@ -84,8 +106,9 @@ const Notifications: React.FC = () => {
     if (!data.title && !data.description) return;
 
     const toastId = data.id?.toString();
-    const duration = data.duration || 3000;
+    const duration = data.duration || 5000;
 
+    let containerColor: string;
     let iconColor: string;
     let position = data.position || 'top-right';
 
@@ -106,16 +129,16 @@ const Notifications: React.FC = () => {
     if (!data.icon) {
       switch (data.type) {
         case 'error':
-          data.icon = 'circle-xmark';
+          data.icon = 'triangle-exclamation';
           break;
         case 'success':
-          data.icon = 'circle-check';
+          data.icon = 'check';
           break;
         case 'warning':
-          data.icon = 'circle-exclamation';
+          data.icon = 'exclamation';
           break;
         default:
-          data.icon = 'circle-info';
+          data.icon = 'info';
           break;
       }
     }
@@ -132,11 +155,26 @@ const Notifications: React.FC = () => {
           iconColor = 'yellow.6';
           break;
         default:
-          iconColor = 'blue.6';
+          iconColor = '#00e1ff';
           break;
       }
     } else {
       iconColor = tinycolor(data.iconColor).toRgbString();
+    }
+
+    switch (data.type) {
+      case 'error':
+        containerColor = 'error';
+        break;
+      case 'success':
+        containerColor = 'success';
+        break;
+      case 'warning':
+        containerColor = 'warning';
+        break;
+      default:
+        containerColor = '';
+        break;
     }
     
     toast.custom(
@@ -146,7 +184,7 @@ const Notifications: React.FC = () => {
             animation: getAnimation(t.visible, position),
             ...data.style,
           }}
-          className={`${classes.container}`}
+          className={`${classes.container} ${containerColor}`}
         >
           <Group noWrap spacing={12}>
             {data.icon && (
@@ -170,6 +208,7 @@ const Notifications: React.FC = () => {
                     label={
                       <Center>
                         <ThemeIcon
+                          className={classes.themeIcon}
                           color={iconColor}
                           radius="xl"
                           size={32}
@@ -182,6 +221,7 @@ const Notifications: React.FC = () => {
                   />
                 ) : (
                   <ThemeIcon
+                    className={classes.themeIcon}
                     color={iconColor}
                     radius="xl"
                     size={32}

@@ -30,11 +30,25 @@ const SliderField: React.FC<Props> = (props) => {
         min={props.row.min}
         max={props.row.max}
         step={props.row.step}
+        size="xs"
         disabled={props.row.disabled}
         marks={[
           { value: props.row.min || 0, label: props.row.min || 0 },
           { value: props.row.max || 100, label: props.row.max || 100 },
         ]}
+        styles={{
+          label: {
+            color: '#e6e6e6',
+            textShadow: '0px 0px 2px rgba(0,0,0,0.2)',
+          },
+          markLabel: { 
+            color: 'rgba(192, 192, 192, 1)', 
+          },
+          bar: {
+            background: 'rgba(37,173,221,1)',
+            boxShadow: '0px 0px 4px rgba(37,173,221,0.5)'
+          }
+        }}
       />
     </Box>
   );

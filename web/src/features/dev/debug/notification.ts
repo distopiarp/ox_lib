@@ -11,11 +11,6 @@ export const debugCustomNotification = () => {
         type: 'success',
         id: 'pogchamp',
         duration: 20000,
-        style: {
-          '.description': {
-            color: 'red',
-          },
-        },
       },
     },
   ]);
@@ -26,6 +21,26 @@ export const debugCustomNotification = () => {
         title: 'Error',
         description: 'Notification description',
         type: 'error',
+      },
+    },
+  ]);
+  debugData<NotificationProps>([
+    {
+      action: 'notify',
+      data: {
+        title: 'Warning',
+        description: 'Notification description',
+        type: 'warning',
+      },
+    },
+  ]);
+  debugData<NotificationProps>([
+    {
+      action: 'notify',
+      data: {
+        title: 'Information',
+        description: 'Notification description',
+        type: 'info',
       },
     },
   ]);

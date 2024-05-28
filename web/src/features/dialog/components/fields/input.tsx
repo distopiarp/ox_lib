@@ -33,6 +33,20 @@ const InputField: React.FC<Props> = (props) => {
           maxLength={props.row.max}
           disabled={props.row.disabled}
           withAsterisk={props.row.required}
+          styles={{
+            label: {
+              color: '#e6e6e6',
+              textShadow: '0px 0px 2px rgba(0,0,0,0.2)',
+            },
+            description: { 
+              color: 'rgba(192, 192, 192, 1)',
+            },
+            input: {
+              background: 'radial-gradient(circle, rgba(255,255,255,0.05) 20%, rgba(77,79,87,0.15) 100%)',
+              border: `2px solid rgba(152, 156, 161, 0.5)`,
+              color: '#e6e6e6',
+            },
+          }}
         />
       ) : (
         <PasswordInput
@@ -46,10 +60,28 @@ const InputField: React.FC<Props> = (props) => {
           maxLength={props.row.max}
           disabled={props.row.disabled}
           withAsterisk={props.row.required}
+          styles={{
+            label: {
+              color: '#e6e6e6',
+              textShadow: '0px 0px 2px rgba(0,0,0,0.2)',
+            },
+            description: { 
+              color: 'rgba(192, 192, 192, 1)',
+            },
+            icon: {
+              color: 'rgba(192, 192, 192, 0.8)'
+            },
+            input: {
+              background: 'radial-gradient(circle, rgba(255,255,255,0.05) 20%, rgba(77,79,87,0.15) 100%)',
+              border: `2px solid rgba(152, 156, 161, 0.5)`,
+              color: '#e6e6e6',
+            },
+          }}
           visibilityToggleIcon={({ reveal, size }) => (
             <LibIcon
               icon={reveal ? 'eye-slash' : 'eye'}
               fontSize={size}
+              style={{ color: '#e6e6e6' }}
               cursor="pointer"
               className={classes.eyeIcon}
               fixedWidth
