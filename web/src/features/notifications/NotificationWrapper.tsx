@@ -13,11 +13,11 @@ const useStyles = createStyles((theme) => ({
     width: 300,
     height: 'fit-content',
     background: 'radial-gradient(31.98% 56.85% at 50% 50%, rgba(12, 13, 18, 0.96) 0%, rgba(14, 15, 19, 0.96) 100%)',
+    boxShadow: 'inset 0px 0px 62px rgba(44, 44, 44, 0.3)',
     color: '#e6e6e6',
     padding: 12,
     borderRadius: '7px',
     fontFamily: 'Poppins',
-    boxShadow: 'inset 0px 0px 62px rgba(44, 44, 44, 0.3)',
     border: '1px solid rgba(144, 144, 144, 0.1)',
 
     '&.success': {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNuiEvent } from '../../hooks/useNuiEvent';
-import { Box, createStyles, Group } from '@mantine/core';
+import { Box, createStyles, Group, Text } from '@mantine/core';
 import ReactMarkdown from 'react-markdown';
 import ScaleFade from '../../transitions/ScaleFade';
 import remarkGfm from 'remark-gfm';
@@ -14,28 +14,39 @@ const useStyles = createStyles((theme, params: { position?: TextUiPosition }) =>
     width: '100%',
     position: 'absolute',
     display: 'flex',
-    alignItems: 
+    alignItems:
       params.position === 'top-center' ? 'baseline' :
-      params.position === 'bottom-center' ? 'flex-end' : 'center',
-    justifyContent: 
+        params.position === 'bottom-center' ? 'flex-end' : 'center',
+    justifyContent:
       params.position === 'right-center' ? 'flex-end' :
-      params.position === 'left-center' ? 'flex-start' : 'center',
+        params.position === 'left-center' ? 'flex-start' : 'center',
   },
   container: {
     fontSize: 16,
     padding: 12,
     margin: 8,
-    backgroundColor: theme.colors.dark[6],
-    color: theme.colors.dark[0],
+    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    color: '#e6e6e6',
     fontFamily: 'Roboto',
     borderRadius: theme.radius.sm,
-    boxShadow: theme.shadows.sm,
   },
+  letterBox: {
+    fontSize: 18,
+    color: '#e6e6e6',
+    fontWeight: 800,
+    padding: '10px 20px 10px 20px',
+    margin: 8,
+    borderRadius: theme.radius.sm,
+    border: '1px solid rgba(0, 255, 255, 0.6)',
+    background: 'radial-gradient(31.98% 56.85% at 50% 50%, rgba(12, 13, 18, 0.96) 0%, rgba(14, 15, 19, 0.96) 100%)',
+    boxShadow: 'inset 0px 0px 25px rgba(0, 255, 255, 0.4), 0px 0px 5px rgba(0, 255, 255, 0.6)',
+  }
 }));
 
 const TextUI: React.FC = () => {
   const [data, setData] = React.useState<TextUiProps>({
     text: '',
+    letter: '',
     position: 'right-center',
   });
   const [visible, setVisible] = React.useState(false);
@@ -53,25 +64,18 @@ const TextUI: React.FC = () => {
     <>
       <Box className={classes.wrapper}>
         <ScaleFade visible={visible}>
-          <Box style={data.style} className={classes.container}>
-            <Group spacing={12}>
-              {data.icon && (
-                <LibIcon
-                  icon={data.icon}
-                  fixedWidth
-                  size="lg"
-                  animation={data.iconAnimation}
-                  style={{
-                    color: data.iconColor,
-                    alignSelf: !data.alignIcon || data.alignIcon === 'center' ? 'center' : 'start',
-                  }}
-                />
-              )}
-              <ReactMarkdown components={MarkdownComponents} remarkPlugins={[remarkGfm]}>
+          <Group spacing={0}>
+            <Box style={data.style} mr="xs" className={classes.letterBox}>
+              <Text>
+                {data.letter}
+              </Text>
+            </Box>
+            <Box style={data.style} className={classes.container}>
+              <Text >
                 {data.text}
-              </ReactMarkdown>
-            </Group>
-          </Box>
+              </Text>
+            </Box>
+          </Group>
         </ScaleFade>
       </Box>
     </>
