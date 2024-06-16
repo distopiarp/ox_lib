@@ -4,6 +4,7 @@ import {useNuiEvent} from '../../hooks/useNuiEvent';
 import {fetchNui} from '../../utils/fetchNui';
 import ScaleFade from '../../transitions/ScaleFade';
 import type {CircleProgressbarProps} from '../../typings';
+import HexagonalProgressbarWithChildren from './HexagonalProgressbarWithChildren';
 
 // 33.5 is the r of the circle
 const progressCircle = keyframes({
@@ -34,14 +35,16 @@ const useStyles = createStyles((theme, params: { position: 'middle' | 'bottom'; 
   },
   value: {
     textAlign: 'center',
-    fontFamily: 'roboto-mono',
+    fontFamily: 'Poppins',
     textShadow: theme.shadows.sm,
     color: theme.colors.gray[3],
+    fontSize: 13,
   },
   label: {
     textAlign: 'center',
     textShadow: theme.shadows.sm,
     color: theme.colors.gray[3],
+    fontFamily: 'Poppins',
     height: 25,
   },
   wrapper: {
@@ -74,7 +77,10 @@ const CircleProgressbar: React.FC = () => {
     const updateProgress = setInterval(() => {
       setValue((previousValue) => {
         const newValue = previousValue + 1;
-        newValue >= 100 && clearInterval(updateProgress);
+        if (newValue >= 100) {
+          clearInterval(updateProgress);
+          setVisible(false);
+        } 
         return newValue;
       });
     }, onePercent);
@@ -85,14 +91,14 @@ const CircleProgressbar: React.FC = () => {
       <Stack spacing={0} className={classes.container}>
         <ScaleFade visible={visible} onExitComplete={() => fetchNui('progressComplete')}>
           <Stack spacing={0} align="center" className={classes.wrapper}>
-            <RingProgress
-              size={90}
-              thickness={7}
-              sections={[{ value: 0, color: theme.primaryColor }]}
-              onAnimationEnd={() => setVisible(false)}
-              className={classes.progress}
-              label={<Text className={classes.value}>{value}%</Text>}
-            />
+            <HexagonalProgressbarWithChildren
+              value={value}
+              pathColor='#00e1ff'
+              width={70}
+              height={70}
+            >
+              <Text className={classes.value}>{value}%</Text>
+            </HexagonalProgressbarWithChildren>
             {label && <Text className={classes.label}>{label}</Text>}
           </Stack>
         </ScaleFade>
