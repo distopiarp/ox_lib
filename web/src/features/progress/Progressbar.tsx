@@ -10,8 +10,32 @@ const useStyles = createStyles((theme) => ({
     width: 350,
     height: 45,
     borderRadius: theme.radius.sm,
-    backgroundColor: theme.colors.dark[5],
     overflow: 'hidden',
+  },
+  labels: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  label: {
+    fontSize: '0.9rem',
+    lineHeight: '4vh',
+    position: 'relative',
+    color: '#ffffff',
+    zIndex: 10,
+    fontWeight: 550,
+    filter: 'drop-shadow(0 0 2px rgba(255, 255, 255, 0.7))', /* Adiciona um efeito de brilho */
+    bottom: '-1.2vh'
+  },
+  percentage: {
+    fontSize: '0.8rem',
+    lineHeight: '4vh',
+    position: 'relative',
+    color: '#ffffff',
+    zIndex: 10,
+    fontWeight: 550,
+    filter: 'drop-shadow(0 0 2px rgba(255, 255, 255, 0.7))', /* Adiciona um efeito de brilho */
+    bottom: '-1.2vh'
   },
   wrapper: {
     width: '100%',
@@ -21,28 +45,6 @@ const useStyles = createStyles((theme) => ({
     justifyContent: 'center',
     bottom: 0,
     position: 'absolute',
-  },
-  bar: {
-    height: '100%',
-    backgroundColor: theme.colors[theme.primaryColor][theme.fn.primaryShade()],
-  },
-  labelWrapper: {
-    position: 'absolute',
-    display: 'flex',
-    width: 350,
-    height: 45,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  label: {
-    maxWidth: 350,
-    padding: 8,
-    textOverflow: 'ellipsis',
-    overflow: 'hidden',
-    whiteSpace: 'nowrap',
-    fontSize: 20,
-    color: theme.colors.gray[3],
-    textShadow: theme.shadows.sm,
   },
 }));
 
@@ -65,19 +67,18 @@ const Progressbar: React.FC = () => {
       <Box className={classes.wrapper}>
         <ScaleFade visible={visible} onExitComplete={() => fetchNui('progressComplete')}>
           <Box className={classes.container}>
-            <Box
-              className={classes.bar}
+              <Box className={classes.labels}>
+                <Text className={classes.label}>{label}</Text>
+                <Text className={classes.percentage}>{duration}</Text>
+              </Box>
+          </Box>
+          <Box
               onAnimationEnd={() => setVisible(false)}
               sx={{
                 animation: 'progress-bar linear',
                 animationDuration: `${duration}ms`,
               }}
-            >
-              <Box className={classes.labelWrapper}>
-                <Text className={classes.label}>{label}</Text>
-              </Box>
-            </Box>
-          </Box>
+            ></Box>
         </ScaleFade>
       </Box>
     </>
