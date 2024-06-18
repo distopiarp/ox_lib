@@ -125,12 +125,12 @@ const InputDialog: React.FC = () => {
             fontSize: 18,
             borderWidth: '3px',
             borderStyle: 'solid',
-            borderImage: 
-              'linear-gradient(to left, rgba(0, 0, 0, 0) 10%, rgba(0, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0) 90%) 0 0 100%'
+            borderImage: 'linear-gradient(to left, rgba(0, 0, 0, 0) 10%, rgba(0, 255, 255, 0.6) 50%, rgba(0, 0, 0, 0) 90%) 0 0 100%'
           },
           modal: {
             position: 'absolute',
-            top: '10%',
+            top: '50%',
+            transform: 'translate(0, -50%)',
             right: '5%',
             background: 'transparent',
             border: `none`,

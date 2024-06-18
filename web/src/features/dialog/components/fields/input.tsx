@@ -45,6 +45,12 @@ const InputField: React.FC<Props> = (props) => {
               background: 'radial-gradient(circle, rgba(255,255,255,0.05) 20%, rgba(77,79,87,0.15) 100%)',
               border: `2px solid rgba(152, 156, 161, 0.5)`,
               color: '#e6e6e6',
+              '&:focus': {
+                border: `2px solid rgba(0, 255, 255, 0.5)`,
+              },
+              '&:active': {
+                border: `2px solid rgba(0, 255, 255, 0.5)`,
+              }
             },
           }}
         />

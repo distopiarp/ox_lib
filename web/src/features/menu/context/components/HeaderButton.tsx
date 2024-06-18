@@ -19,6 +19,9 @@ const useStyles = createStyles((theme, params: { canClose?: boolean }) => ({
     justifyContent: 'center',
     background: 'none',
     padding: 2,
+    '&:hover': {
+      background: 'none',
+    }
   },
   root: {
     border: 'none',

@@ -1,7 +1,7 @@
 import { ActionIcon, Button, Divider, Drawer, Stack, Tooltip } from '@mantine/core';
 import { debugAlert } from './debug/alert';
 import { debugContext } from './debug/context';
-import { debugInput } from './debug/input';
+import { debugInput, debugInputShort } from './debug/input';
 import { debugMenu } from './debug/menu';
 import { debugCustomNotification } from './debug/notification';
 import { debugCircleProgressbar, debugProgressbar } from './debug/progress';
@@ -34,6 +34,9 @@ const Dev: React.FC = () => {
       <Drawer position="left" onClose={() => setOpened(false)} opened={opened} title="Developer drawer" padding="xl">
         <Stack>
           <Divider />
+          <Button fullWidth onClick={() => debugInputShort()}>
+            Open short input dialog
+          </Button>
           <Button fullWidth onClick={() => debugInput()}>
             Open input dialog
           </Button>

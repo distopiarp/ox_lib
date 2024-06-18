@@ -60,3 +60,25 @@ export const debugInput = () => {
     },
   ]);
 };
+
+
+export const debugInputShort = () => {
+  debugData<InputProps>([
+    {
+      action: 'openDialog',
+      data: {
+        heading: 'Police locker',
+        rows: [
+          {
+            type: 'input',
+            label: 'Locker number',
+            placeholder: '420',
+            description: 'Description that tells you what this input field does',
+          },
+          { type: 'input', label: 'Locker PIN', password: true, icon: 'lock' },
+          { type: 'checkbox', label: 'Some other checkbox', checked: true },
+        ],
+      },
+    },
+  ]);
+};
