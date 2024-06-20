@@ -53,7 +53,9 @@ const TextUI: React.FC = () => {
   const { classes } = useStyles({ position: data.position });
 
   useNuiEvent<TextUiProps>('textUi', (data) => {
-    if (!data.position) data.position = 'right-center'; // Default right position
+    if (!data.position) data.position = 'bottom-center'; // Default right position
+    if (!data.letter) data.letter = 'E';
+
     setData(data);
     setVisible(true);
   });
