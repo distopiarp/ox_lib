@@ -9,7 +9,6 @@ export const debugTextUI = () => {
         text: 'Access locker inventory',
         position: 'bottom-center',
         icon: 'door-open',
-        letter: 'E'
       },
     },
   ]);

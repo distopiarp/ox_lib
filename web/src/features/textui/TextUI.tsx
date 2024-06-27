@@ -27,8 +27,20 @@ const useStyles = createStyles((theme, params: { position?: TextUiPosition }) =>
     margin: 8,
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
     color: '#e6e6e6',
-    fontFamily: 'Roboto',
+    fontFamily: 'Poppins',
+    position: 'relative',
     borderRadius: theme.radius.sm,
+    '&::before': {
+      content: '" "',
+      width: 7,
+      height: 7,
+      top: 4,
+      left: 4,
+      position: 'absolute',
+      borderRadius: '50%',
+      backgroundColor: 'rgba(0, 255, 255, 1)',
+      boxShadow: '0px 0px 6px rgba(0, 255, 255, 0.7)'
+    }
   },
   letterBox: {
     fontSize: 18,
@@ -37,8 +49,9 @@ const useStyles = createStyles((theme, params: { position?: TextUiPosition }) =>
     padding: '10px 20px 10px 20px',
     margin: 8,
     borderRadius: theme.radius.sm,
+    opacity: 0.9,
     border: '1px solid rgba(0, 255, 255, 0.6)',
-    background: 'radial-gradient(31.98% 56.85% at 50% 50%, rgba(12, 13, 18, 0.96) 0%, rgba(14, 15, 19, 0.96) 100%)',
+    background: 'radial-gradient(31.98% 56.85% at 50% 50%, rgba(12, 13, 18, 0.8) 0%, rgba(14, 15, 19, 0.96) 100%)',
     boxShadow: 'inset 0px 0px 25px rgba(0, 255, 255, 0.4), 0px 0px 5px rgba(0, 255, 255, 0.6)',
   }
 }));
@@ -54,7 +67,6 @@ const TextUI: React.FC = () => {
 
   useNuiEvent<TextUiProps>('textUi', (data) => {
     if (!data.position) data.position = 'bottom-center'; // Default right position
-    if (!data.letter) data.letter = 'E';
 
     setData(data);
     setVisible(true);
@@ -62,16 +74,21 @@ const TextUI: React.FC = () => {
 
   useNuiEvent('textUiHide', () => setVisible(false));
 
+  let letter = <></>;
+  if (data.letter) {
+    letter = (<Box style={data.style} mr="xs" className={classes.letterBox}>
+      <Text>
+        {data.letter}
+      </Text>
+    </Box>);
+  }
+
   return (
     <>
       <Box className={classes.wrapper}>
         <ScaleFade visible={visible}>
           <Group spacing={0}>
-            <Box style={data.style} mr="xs" className={classes.letterBox}>
-              <Text>
-                {data.letter}
-              </Text>
-            </Box>
+            {letter}
             <Box style={data.style} className={classes.container}>
               <Text >
                 {data.text}

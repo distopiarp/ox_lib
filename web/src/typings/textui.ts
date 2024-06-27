@@ -5,7 +5,7 @@ import { IconAnimation } from '../components/LibIcon';
 export type TextUiPosition = 'right-center' | 'left-center' | 'top-center' | 'bottom-center';
 
 export interface TextUiProps {
-  letter: string;
+  letter?: string;
   text: string;
   position?: TextUiPosition;
   icon?: IconProp;
