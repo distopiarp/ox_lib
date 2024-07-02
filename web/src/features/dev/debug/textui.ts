@@ -13,3 +13,17 @@ export const debugTextUI = () => {
     },
   ]);
 };
+
+export const debugTextUIWithLetter = () => {
+  debugData<TextUiProps>([
+    {
+      action: 'textUi',
+      data: {
+        text: 'Access locker inventory',
+        position: 'bottom-center',
+        icon: 'door-open',
+        letter: 'E'
+      },
+    },
+  ]);
+};

@@ -5,7 +5,7 @@ import { debugInput, debugInputShort } from './debug/input';
 import { debugMenu } from './debug/menu';
 import { debugCustomNotification } from './debug/notification';
 import { debugCircleProgressbar, debugProgressbar } from './debug/progress';
-import { debugTextUI } from './debug/textui';
+import { debugTextUI, debugTextUIWithLetter } from './debug/textui';
 import { debugSkillCheck } from './debug/skillcheck';
 import { useState } from 'react';
 import { debugRadial } from './debug/radial';
@@ -67,6 +67,9 @@ const Dev: React.FC = () => {
           <Divider />
           <Button fullWidth onClick={() => debugTextUI()}>
             Show TextUI
+          </Button>
+          <Button fullWidth onClick={() => debugTextUIWithLetter()}>
+            Show TextUI with Letter
           </Button>
           <Divider />
           <Button fullWidth onClick={() => debugSkillCheck()}>
